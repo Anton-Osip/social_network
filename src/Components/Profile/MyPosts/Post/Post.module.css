@@ -1,0 +1,42 @@
+.post {
+    display: flex;
+    gap: 36px;
+    margin-bottom: 92px;
+}
+
+.post__ava {
+    width: 58px;
+    height: 58px;
+}
+
+.post__avaImg {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+}
+
+.post__likeNum,
+.post__text {
+    color: #47525e;
+    font-family: Lato,sans-serif;
+    font-size: 26px;
+    line-height: 33px;
+}
+
+.post__likeNum {
+    color: #47525e;
+    font-family: Lato,sans-serif;
+    font-size: 26px;
+    line-height: 33px;
+    margin-left: 25px;
+}
+
+.post__like {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.post__like img {
+    cursor: pointer;
+}
