@@ -19,9 +19,8 @@ export function MyPosts() {
                 </form>
             </div>
             <div className={styles.posts}>
-                <Post />
-                <Post />
-                <Post />
+                <Post message='Hey, why nobody love me?' likeCount={10} />
+                <Post message="It's our new program! Hey!" likeCount= {25} />
             </div>
         </div>
     )

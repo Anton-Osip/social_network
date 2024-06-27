@@ -3,16 +3,21 @@ import styles from './Post.module.css'
 import ava from '../../../../assets/ava.jpg'
 import like from '../../../../assets/like.svg'
 
-export function Post() {
+type PostPropsType = {
+    message: string
+    likeCount: number
+}
+
+export function Post({message, likeCount}: PostPropsType) {
     return (
         <div className = {styles.post}>
             <div className = {styles.post__ava}>
                 <img src = {ava} alt = "ava" className = {styles.post__avaImg}/>
             </div>
-            <p className = {styles.post__text}>Hey, why nobody love me?</p>
+            <p className = {styles.post__text}>{message}</p>
             <div className = {styles.post__like}>
                 <img src = {like} alt = "like"/>
-                <span className = {styles.post__likeNum}>10</span>
+                <span className = {styles.post__likeNum}>{likeCount}</span>
             </div>
         </div>
     )
