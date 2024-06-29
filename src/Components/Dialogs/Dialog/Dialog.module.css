@@ -6,3 +6,10 @@
     line-height: 44px;
     cursor: pointer;
 }
+
+.active__name{
+    white-space: nowrap;
+    background: linear-gradient(45deg, rgb(19, 176, 245), rgb(231, 15, 170));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
