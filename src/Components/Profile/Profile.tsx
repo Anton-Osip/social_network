@@ -6,7 +6,7 @@ import {MyPosts} from "./MyPosts/MyPosts";
 
 export  function Profile() {
     return (
-        <div className={styles.content}>
+        <div >
             <div>
                 <img src={banner} alt='banner' className={styles.banner__img} />
             </div>
