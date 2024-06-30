@@ -3,7 +3,7 @@ import banner from '../../../assets/banner.jpg'
 import ava from '../../../assets/ava.jpg'
 import styles from './ProfileInfo.module.css'
 
-export function ProfileInfo() {
+export const ProfileInfo: React.FC = () => {
     return (
         < >
             <div>

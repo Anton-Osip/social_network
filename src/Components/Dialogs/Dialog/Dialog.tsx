@@ -6,7 +6,6 @@ type DialogProps = {
     name: string
 }
 
-
 export const Dialog: React.FC<DialogProps> = ({name}: DialogProps) => {
     return (
         <NavLink to = {`/dialogs/${name}`} className = {styles.name} activeClassName = {styles.active__name}>

@@ -8,7 +8,7 @@ type PostPropsType = {
     likeCount: number
 }
 
-export function Post({message, likeCount}: PostPropsType) {
+export const Post: React.FC<PostPropsType> = ({message, likeCount}: PostPropsType) => {
     return (
         <div className = {styles.post}>
             <div className = {styles.post__ava}>
