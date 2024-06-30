@@ -8,11 +8,11 @@ type  MyPostsType = {
 }
 
 export const MyPosts: React.FC<MyPostsType> = ({posts}: MyPostsType) => {
-
-
     const postElements = posts.map((post: PostsType) => <Post key = {post.id} message = {post.message}
                                                               likeCount = {post.likeCount}/>)
-
+const addPosts=()=>{
+alert('add')
+}
     return (
         <div>
             <div className = {styles.newPost}>
@@ -23,7 +23,7 @@ export const MyPosts: React.FC<MyPostsType> = ({posts}: MyPostsType) => {
                         placeholder = "your news..."
                         className = {styles.newPost__input}
                     />
-                    <button type = "submit" className = {styles.newPost__btn}>
+                    <button onClick={addPosts} type = "submit" className = {styles.newPost__btn}>
                         Send
                     </button>
                 </form>
