@@ -15,22 +15,22 @@ export type MessagesType = {
 
 
 export const Dialogs: React.FC<DialogsProps> = (props: DialogsProps) => {
-    let dialogs: DialogsType[] = [
+    let dialogsData: DialogsType[] = [
         {id: 'dialog1', name: 'Anton'},
         {id: 'dialog2', name: 'Yana'},
         {id: 'dialog3', name: 'Valera'},
         {id: 'dialog4', name: 'Viktor'},
         {id: 'dialog5', name: 'Pasha'},
     ]
-    let messages: MessagesType[] = [
+    let messagesData: MessagesType[] = [
         {id: 'message1', message: 'I am a normal pBLablabl I can have text and everything', my: false},
         {id: 'message2', message: 'I am a normal pBLablabl I can have text and everything', my: true},
         {id: 'message3', message: 'I am a normal pBLablabl I can have text and everything', my: false},
         {id: 'message4', message: 'I am a normal pBLablabl I can have text and everything', my: true},
     ]
 
-    const dialogsElements = dialogs.map(dialog => <Dialog name = {dialog.name} key = {dialog.id}/>)
-    const messagesElements = messages.map(message => (
+    const dialogsElements = dialogsData.map(dialog => <Dialog name = {dialog.name} key = {dialog.id}/>)
+    const messagesElements = messagesData.map(message => (
         <Message message = {message.message} key = {message.id} my = {message.my}/>
     ))
     return (
