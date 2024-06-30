@@ -1,8 +1,7 @@
 import React from 'react'
-
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {PostsType} from "../../index";
+import {PostsType} from "../../redux/state";
 
 type  ProfileType = {
     posts: PostsType[]
@@ -12,7 +11,7 @@ export const Profile: React.FC<ProfileType> = ({posts}: ProfileType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={posts}/>
+            <MyPosts posts = {posts}/>
         </div>
     )
 }
