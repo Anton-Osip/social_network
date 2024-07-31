@@ -1,4 +1,4 @@
-import { v4} from "uuid";
+import {v4} from "uuid";
 
 export type PostsType = {
     id: string
@@ -14,7 +14,6 @@ export type MessagesType = {
     message: string
     my: boolean
 }
-
 export type StateType = {
     profilePage: {
         posts: PostsType[]
@@ -51,5 +50,12 @@ export const state: StateType = {
         ],
     },
     sidebar: {}
+}
 
+export const addNewPost = (postMessage: string) => {
+    state.profilePage.posts.push({
+        id: v4(),
+        message: postMessage,
+        likeCount: 0
+    })
 }
