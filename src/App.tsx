@@ -7,7 +7,7 @@ import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Music} from "./Components/Music/Music";
 import {News} from './Components/News/News';
-import {StateType, updateNewPostText} from "./redux/state";
+import {StateType} from "./redux/state";
 
 
 type AppType = {
