@@ -1,4 +1,4 @@
-import {v3, v4} from "uuid";
+import { v4} from "uuid";
 
 export type PostsType = {
     id: string
@@ -51,6 +51,5 @@ export const state: StateType = {
         ],
     },
     sidebar: {}
-
 
 }

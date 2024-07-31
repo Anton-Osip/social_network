@@ -2,6 +2,7 @@ import styles from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
 import {DialogsType, MessagesType} from "../../redux/state";
+import React from "react";
 
 type DialogsProps = {
     dialogs: DialogsType[]
@@ -10,7 +11,11 @@ type DialogsProps = {
 
 
 export const Dialogs: React.FC<DialogsProps> = ({dialogs, messages}: DialogsProps) => {
+    const inputElement = React.createRef<HTMLInputElement>()
 
+    const addMessage = () => {
+        alert(inputElement.current?.value)
+    }
 
     const dialogsElements = dialogs.map(dialog => <Dialog name = {dialog.name} key = {dialog.id}/>)
     const messagesElements = messages.map(message => (
@@ -25,11 +30,12 @@ export const Dialogs: React.FC<DialogsProps> = ({dialogs, messages}: DialogsProp
             </div>
             <form className = {styles.form}>
                 <input
+                    ref = {inputElement}
                     placeholder = "Messages"
                     type = "text"
                     className = {styles.form__input}
                 />
-                <button type = "submit" className = {styles.form__btn}>
+                <button type = "submit" className = {styles.form__btn} onClick = {addMessage}>
                     SEND
                 </button>
             </form>
