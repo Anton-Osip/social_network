@@ -7,15 +7,16 @@ import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Music} from "./Components/Music/Music";
 import {News} from './Components/News/News';
-import {addNewPost, StateType} from "./redux/state";
+import {StateType, updateNewPostText} from "./redux/state";
 
 
 type AppType = {
     state: StateType
-    addNewPost: (postMessage: string) => void
+    addNewPost: () => void
+    updateNewPostText:(text:string)=>void
 }
 
-const App: React.FC<AppType> = ({state, addNewPost}: AppType) => {
+const App: React.FC<AppType> = ({state, addNewPost,updateNewPostText}: AppType) => {
     return (
         <BrowserRouter>
             <div className = "app-wrapper">
@@ -27,7 +28,7 @@ const App: React.FC<AppType> = ({state, addNewPost}: AppType) => {
                                                     messages = {state.dialogsPage.messages}/>}
                     />
                     <Route path = "/profile"
-                           render = {() => <Profile posts = {state.profilePage.posts} addNewPost = {addNewPost}/>}
+                           render = {() => <Profile newPostText={state.profilePage.newPostText} posts = {state.profilePage.posts} addNewPost = {addNewPost} updateNewPostText={updateNewPostText}/>}
                     />
                     <Route path = "/news" component = {News}/>
                     <Route path = "/music" component = {Music}/>
