@@ -1,5 +1,5 @@
 import {v4} from "uuid";
-import {rerenderEntireTree} from "../render";
+
 
 export type PostsType = {
     id: string
@@ -55,6 +55,8 @@ export const state: StateType = {
     sidebar: {}
 }
 
+let rerenderEntireTree: () => void = () => {}
+
 export const addNewPost = () => {
     state.profilePage.posts.push({
         id: v4(),
@@ -62,10 +64,14 @@ export const addNewPost = () => {
         likeCount: 0
     })
     state.profilePage.newPostText = ''
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const updateNewPostText = (text: string) => {
     state.profilePage.newPostText = text
-    rerenderEntireTree(state)
+    rerenderEntireTree()
+}
+
+export const subscribe = (observer: () => void) => {
+    rerenderEntireTree = observer
 }
