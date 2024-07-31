@@ -14,7 +14,8 @@ export const MyPosts: React.FC<MyPostsType> = ({posts, addNewPosts}: MyPostsType
                                                               likeCount = {post.likeCount}/>)
     const addPosts = () => {
         if (newPostElement.current) {
-            addNewPosts(newPostElement.current?.value)
+            addNewPosts(newPostElement.current.value)
+            newPostElement.current.value = ''
         }
     }
     return (

@@ -1,4 +1,5 @@
 import {v4} from "uuid";
+import {rerenderEntireTree} from "../render";
 
 export type PostsType = {
     id: string
@@ -58,4 +59,5 @@ export const addNewPost = (postMessage: string) => {
         message: postMessage,
         likeCount: 0
     })
+    rerenderEntireTree(state)
 }

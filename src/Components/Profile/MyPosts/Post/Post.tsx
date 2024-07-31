@@ -16,8 +16,8 @@ export const Post: React.FC<PostPropsType> = ({message, likeCount}: PostPropsTyp
             </div>
             <p className = {styles.post__text}>{message}</p>
             <div className = {styles.post__like}>
-                <img src = {like} alt = "like"/>
                 <span className = {styles.post__likeNum}>{likeCount}</span>
+                <img src = {like} alt = "like"/>
             </div>
         </div>
     )
