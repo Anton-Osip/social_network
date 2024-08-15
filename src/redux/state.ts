@@ -80,12 +80,14 @@ export type StateType = {
 
 export type StoreType = {
     _state: StateType
-    getState:()=>StateType
+    getState: () => StateType
     _callSubscriber: () => void
-    addNewPost: () => void
-    updateNewPostText: (text: string) => void
     subscribe: (observer: () => void) => void
+    dispatch: (action: ActionType) => void
 }
+export type addNewPostActionType = ReturnType<typeof addNewPostAC>
+export type updateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
+export type ActionType = addNewPostActionType | updateNewPostTextActionType
 
 export const store: StoreType = {
     _state: {
@@ -116,25 +118,31 @@ export const store: StoreType = {
     },
     _callSubscriber() {
     },
-    getState(){
+    getState() {
         return this._state
-    },
-    addNewPost() {
-        this._state.profilePage.posts.push({
-            id: v4(),
-            message: this._state.profilePage.newPostText,
-            likeCount: 0
-        })
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber()
-    },
-
-    updateNewPostText(text) {
-        this._state.profilePage.newPostText = text
-        this._callSubscriber()
     },
     subscribe(observer) {
         this._callSubscriber = observer
+    },
+    dispatch(action) {
+        switch (action.type) {
+            case "ADD-NEW-POST": {
+                this._state.profilePage.posts.push({
+                    id: v4(),
+                    message: this._state.profilePage.newPostText,
+                    likeCount: 0
+                })
+                this._state.profilePage.newPostText = ''
+                this._callSubscriber()
+                break
+            }
+            case "UPDATE-NEW-POST-TEXT": {
+                this._state.profilePage.newPostText = action.text
+                this._callSubscriber()
+            }
+        }
     }
-
 }
+
+export const addNewPostAC = () => ({type: 'ADD-NEW-POST'} as const)
+export const updateNewPostTextAC = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', text} as const)
