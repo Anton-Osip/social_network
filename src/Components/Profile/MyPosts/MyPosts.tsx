@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react'
 import styles from './MyPosts.module.css'
 import {Post} from './Post/Post'
-import {ActionType, addNewPostAC, PostsType, updateNewPostTextAC} from "../../../redux/state";
+import {ActionType, addPostAC, PostsType, updateNewPostTextAC} from "../../../redux/state";
 
 type  MyPostsType = {
     newPostText: string
@@ -15,7 +15,7 @@ export const MyPosts: React.FC<MyPostsType> = ({posts, newPostText, dispatch}: M
                                                               likeCount = {post.likeCount}/>)
     const addPosts = () => {
         if (newPostElement.current) {
-            dispatch(addNewPostAC())
+            dispatch(addPostAC())
         }
     }
     const onPostChange = (e: ChangeEvent<HTMLInputElement>) => {

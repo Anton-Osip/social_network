@@ -85,9 +85,9 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionType) => void
 }
-export type addNewPostActionType = ReturnType<typeof addNewPostAC>
+export type addPostActionType = ReturnType<typeof addPostAC>
 export type updateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
-export type ActionType = addNewPostActionType | updateNewPostTextActionType
+export type ActionType = addPostActionType | updateNewPostTextActionType
 
 export const store: StoreType = {
     _state: {
@@ -126,7 +126,7 @@ export const store: StoreType = {
     },
     dispatch(action) {
         switch (action.type) {
-            case "ADD-NEW-POST": {
+            case "ADD-POST": {
                 this._state.profilePage.posts.push({
                     id: v4(),
                     message: this._state.profilePage.newPostText,
@@ -137,12 +137,12 @@ export const store: StoreType = {
                 break
             }
             case "UPDATE-NEW-POST-TEXT": {
-                this._state.profilePage.newPostText = action.text
+                this._state.profilePage.newPostText = action.newText
                 this._callSubscriber()
             }
         }
     }
 }
 
-export const addNewPostAC = () => ({type: 'ADD-NEW-POST'} as const)
-export const updateNewPostTextAC = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', text} as const)
+export const addPostAC = () => ({type: 'ADD-POST'} as const)
+export const updateNewPostTextAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
