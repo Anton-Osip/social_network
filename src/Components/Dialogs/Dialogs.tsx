@@ -1,8 +1,9 @@
 import styles from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
-import {ActionType, addMessageAC, DialogsType, MessagesType, updateNewMessageTextAC} from "../../redux/state";
+import {ActionType,  DialogsType, MessagesType} from "../../redux/state";
 import React from "react";
+import {addMessageAC, updateNewMessageTextAC} from "../../redux/dialogs-reducer";
 
 type DialogsProps = {
     newMessageText:string
