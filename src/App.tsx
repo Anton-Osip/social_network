@@ -16,7 +16,7 @@ type AppType = {
 
 }
 
-const App: React.FC<AppType> = ({state,dispatch}: AppType) => {
+const App: React.FC<AppType> = ({state, dispatch}: AppType) => {
     return (
         <BrowserRouter>
             <div className = "app-wrapper">
@@ -25,10 +25,12 @@ const App: React.FC<AppType> = ({state,dispatch}: AppType) => {
                 <div className = "content">
                     <Route path = "/dialogs"
                            render = {() => <Dialogs dialogs = {state.dialogsPage.dialogs}
-                                                    messages = {state.dialogsPage.messages}/>}
+                                                    messages = {state.dialogsPage.messages}
+                                                    newMessageText={state.dialogsPage.newMessageText} dispatch = {dispatch}/>}
                     />
                     <Route path = "/profile"
-                           render = {() => <Profile newPostText={state.profilePage.newPostText} posts = {state.profilePage.posts} dispatch = {dispatch}/>}
+                           render = {() => <Profile newPostText = {state.profilePage.newPostText}
+                                                    posts = {state.profilePage.posts} dispatch = {dispatch}/>}
                     />
                     <Route path = "/news" component = {News}/>
                     <Route path = "/music" component = {Music}/>

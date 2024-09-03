@@ -1,20 +1,25 @@
 import styles from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
-import {DialogsType, MessagesType} from "../../redux/state";
+import {ActionType, addMessageAC, DialogsType, MessagesType, updateNewMessageTextAC} from "../../redux/state";
 import React from "react";
 
 type DialogsProps = {
+    newMessageText:string
     dialogs: DialogsType[]
     messages: MessagesType[]
+    dispatch: (action: ActionType) => void
 }
 
 
-export const Dialogs: React.FC<DialogsProps> = ({dialogs, messages}: DialogsProps) => {
-    const inputElement = React.createRef<HTMLInputElement>()
+export const Dialogs: React.FC<DialogsProps> = ({newMessageText,dialogs, messages, dispatch}: DialogsProps) => {
 
-    const addMessage = () => {
-        alert(inputElement.current?.value)
+    const addMessage = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        dispatch(addMessageAC())
+    }
+    const onMessageChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
+        dispatch(updateNewMessageTextAC(e.currentTarget.value))
     }
 
     const dialogsElements = dialogs.map(dialog => <Dialog name = {dialog.name} key = {dialog.id}/>)
@@ -30,10 +35,11 @@ export const Dialogs: React.FC<DialogsProps> = ({dialogs, messages}: DialogsProp
             </div>
             <form className = {styles.form}>
                 <input
-                    ref = {inputElement}
                     placeholder = "Messages"
                     type = "text"
                     className = {styles.form__input}
+                    value={newMessageText}
+                    onChange={onMessageChange}
                 />
                 <button type = "submit" className = {styles.form__btn} onClick = {addMessage}>
                     SEND
