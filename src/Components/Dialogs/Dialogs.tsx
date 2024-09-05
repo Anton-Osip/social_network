@@ -1,26 +1,33 @@
 import styles from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
-import {ActionType,  DialogsType, MessagesType} from "../../redux/store";
+import {DialogsType, MessagesType} from "../../redux/store";
 import React from "react";
-import {addMessageAC, updateNewMessageTextAC} from "../../redux/dialogs-reducer";
 
 type DialogsProps = {
-    newMessageText:string
+    newMessageText: string
     dialogs: DialogsType[]
     messages: MessagesType[]
-    dispatch: (action: ActionType) => void
+    addMessage: () => void
+    onMessageChange: (newMessage: string) => void
+
 }
 
 
-export const Dialogs: React.FC<DialogsProps> = ({newMessageText,dialogs, messages, dispatch}: DialogsProps) => {
+export const Dialogs: React.FC<DialogsProps> = ({
+                                                    newMessageText,
+                                                    dialogs,
+                                                    messages,
+                                                    addMessage,
+                                                    onMessageChange
+                                                }: DialogsProps) => {
 
-    const addMessage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const addMessageHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        dispatch(addMessageAC())
+        addMessage()
     }
-    const onMessageChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
-        dispatch(updateNewMessageTextAC(e.currentTarget.value))
+    const onMessageChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onMessageChange(e.currentTarget.value)
     }
 
     const dialogsElements = dialogs.map(dialog => <Dialog name = {dialog.name} key = {dialog.id}/>)
@@ -39,10 +46,10 @@ export const Dialogs: React.FC<DialogsProps> = ({newMessageText,dialogs, message
                     placeholder = "Messages"
                     type = "text"
                     className = {styles.form__input}
-                    value={newMessageText}
-                    onChange={onMessageChange}
+                    value = {newMessageText}
+                    onChange = {onMessageChangeHandler}
                 />
-                <button type = "submit" className = {styles.form__btn} onClick = {addMessage}>
+                <button type = "submit" className = {styles.form__btn} onClick = {addMessageHandler}>
                     SEND
                 </button>
             </form>
