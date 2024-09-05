@@ -1,7 +1,16 @@
-import {ActionType, ProfilePageType} from "./state";
+import {ActionType, ProfilePageType} from "./store";
 import {v4} from "uuid";
 
-export const profileReducer = (state: ProfilePageType, action: ActionType) => {
+const initialState = {
+    newPostText: 'blablabla',
+    posts: [
+        {id: v4(), message: 'Hey, why nobody love me?', likeCount: 1},
+        {id: v4(), message: 't\'s our new program! Hey!', likeCount: 25},
+        {id: v4(), message: 'Hey, why nobody love me?', likeCount: 100},
+    ],
+}
+
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionType) => {
     switch (action.type) {
         case "ADD-POST": {
             state.posts.push({

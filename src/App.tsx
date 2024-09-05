@@ -7,7 +7,7 @@ import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Music} from "./Components/Music/Music";
 import {News} from './Components/News/News';
-import {ActionType, StateType} from "./redux/state";
+import {ActionType, StateType} from "./redux/store";
 
 
 type AppType = {
