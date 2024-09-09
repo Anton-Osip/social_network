@@ -2,17 +2,14 @@ import React from 'react'
 import {addPostAC, updateNewPostTextAC} from "../../../redux/store";
 import {MyPosts} from "./MyPosts";
 
-type  MyPostsType = {
-    store: any
-}
 
-export const MyPostsContainer: React.FC<MyPostsType> = ({store}: MyPostsType) => {
+export const MyPostsContainer = ({store}) => {
     const state = store.getState()
 
     const addPosts = () => {
         store.dispatch(addPostAC())
     }
-    const onPostChange = (newPost: string) => {
+    const onPostChange = (newPost) => {
         store.dispatch(updateNewPostTextAC(newPost))
     }
     return (

@@ -1,24 +1,17 @@
-import React, {ChangeEvent} from 'react'
+import React from 'react'
 import styles from './MyPosts.module.css'
 import {Post} from './Post/Post'
-import {PostsType} from "../../../redux/store";
 
-type  MyPostsType = {
-    newPostText: string
-    posts: PostsType[]
-    updateNewPost: (newPost: string) => void
-    addPost: () => void
-}
 
-export const MyPosts: React.FC<MyPostsType> = ({posts, newPostText, updateNewPost, addPost}: MyPostsType) => {
+export const MyPosts = ({posts, newPostText, updateNewPost, addPost}) => {
 
-    const postElements = posts.map((post: PostsType) => <Post key = {post.id} message = {post.message}
-                                                              likeCount = {post.likeCount}/>)
+    const postElements = posts.map((post) => <Post key = {post.id} message = {post.message}
+                                                   likeCount = {post.likeCount}/>)
 
     const onAddPost = () => {
         addPost()
     }
-    const onPostChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onPostChange = (e) => {
         updateNewPost(e.currentTarget.value)
     }
     return (

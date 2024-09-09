@@ -1,13 +1,8 @@
 import React from 'react'
 import styles from './Message.module.css'
 
-type MessageProps = {
-    message: string
-    my: boolean
-}
 
-
-export const Message: React.FC<MessageProps> = ({message, my}: MessageProps) => {
+export const Message = ({message, my}) => {
     return (
         <div
             className = {

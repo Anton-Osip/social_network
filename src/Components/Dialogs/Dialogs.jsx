@@ -1,41 +1,26 @@
 import styles from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
-import {DialogsType, MessagesType} from "../../redux/store";
+
 import React from "react";
 
-type DialogsProps = {
-    newMessageText: string
-    dialogs: DialogsType[]
-    messages: MessagesType[]
-    addMessage: () => void
-    onMessageChange: (newMessage: string) => void
 
-}
+export const Dialogs = ({
+                            newMessageText, dialogs, messages, addMessage, onMessageChange
+                        }) => {
 
-
-export const Dialogs: React.FC<DialogsProps> = ({
-                                                    newMessageText,
-                                                    dialogs,
-                                                    messages,
-                                                    addMessage,
-                                                    onMessageChange
-                                                }: DialogsProps) => {
-
-    const addMessageHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const addMessageHandler = (e) => {
         e.preventDefault();
         addMessage()
     }
-    const onMessageChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onMessageChangeHandler = (e) => {
         onMessageChange(e.currentTarget.value)
     }
 
     const dialogsElements = dialogs.map(dialog => <Dialog name = {dialog.name} key = {dialog.id}/>)
     const messagesElements = messages.map(message => (
-        <Message message = {message.message} key = {message.id} my = {message.my}/>
-    ))
-    return (
-        <div className = {styles.dialogs}>
+        <Message message = {message.message} key = {message.id} my = {message.my}/>))
+    return (<div className = {styles.dialogs}>
             <h1 className = {styles.dialogs__title}>DIALOGS</h1>
             <div className = {styles.dialogs__inner}>
                 <div className = {styles.dialogs____names}>{dialogsElements}</div>
@@ -53,6 +38,5 @@ export const Dialogs: React.FC<DialogsProps> = ({
                     SEND
                 </button>
             </form>
-        </div>
-    )
+        </div>)
 }

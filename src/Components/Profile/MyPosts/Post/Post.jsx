@@ -3,12 +3,8 @@ import styles from './Post.module.css'
 import ava from '../../../../assets/ava.jpg'
 import like from '../../../../assets/like.svg'
 
-type PostPropsType = {
-    message: string
-    likeCount: number
-}
 
-export const Post: React.FC<PostPropsType> = ({message, likeCount}: PostPropsType) => {
+export const Post = ({message, likeCount}) => {
     return (
         <div className = {styles.post}>
             <div className = {styles.post__ava}>

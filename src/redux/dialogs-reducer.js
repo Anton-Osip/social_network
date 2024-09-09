@@ -1,4 +1,3 @@
-import {ActionType, DialogsPageType,} from "./store";
 import {v4} from "uuid";
 
 const initialState = {
@@ -18,7 +17,7 @@ const initialState = {
     ],
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType) => {
+export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-TEXT": {
             state.newMessageText = action.newText
@@ -40,8 +39,8 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
 
 }
 
-export const addMessageAC = () => ({type: 'ADD-MESSAGE'} as const)
-export const updateNewMessageTextAC = (newText: string) => ({
+export const addMessageAC = () => ({type: 'ADD-MESSAGE'})
+export const updateNewMessageTextAC = (newText) => ({
     type: 'UPDATE-NEW-MESSAGE-TEXT',
     newText: newText
-} as const)
+})

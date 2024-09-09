@@ -9,11 +9,7 @@ import {News} from './Components/News/News';
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 
-type AppType = {
-    store: any
-}
-
-const App: React.FC<AppType> = ({store}: AppType) => {
+const App = ({store}) => {
     return (
         <BrowserRouter>
             <div className = "app-wrapper">
