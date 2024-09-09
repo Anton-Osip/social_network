@@ -9,7 +9,7 @@ import {News} from './Components/News/News';
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 
-const App = ({store}) => {
+const App = () => {
     return (
         <BrowserRouter>
             <div className = "app-wrapper">
@@ -17,10 +17,10 @@ const App = ({store}) => {
                 <Navbar/>
                 <div className = "content">
                     <Route path = "/dialogs"
-                           render = {() => <DialogsContainer store = {store}/>}
+                           render = {() => <DialogsContainer/>}
                     />
                     <Route path = "/profile"
-                           render = {() => <Profile store = {store}/>}
+                           render = {() => <Profile/>}
                     />
                     <Route path = "/news" component = {News}/>
                     <Route path = "/music" component = {Music}/>
