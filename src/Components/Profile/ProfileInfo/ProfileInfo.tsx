@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {FC} from 'react'
 import banner from '../../../assets/banner.jpg'
 import ava from '../../../assets/ava.jpg'
 import styles from './ProfileInfo.module.css'
 
-export const ProfileInfo = () => {
+type ProfileInfoPropsType = {}
+
+export const ProfileInfo: FC<ProfileInfoPropsType> = () => {
     return (
         < >
             <div>

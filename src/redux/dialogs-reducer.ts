@@ -1,6 +1,22 @@
 import {v4} from "uuid";
 
-const initialState = {
+export type DialogsType = {
+    id: string
+    name: string
+}
+export type MessagesType = {
+    id: string
+    message: string
+    my: boolean
+}
+
+export type DialogsStateType = {
+    newMessageText: string
+    dialogs: DialogsType[]
+    messages: MessagesType[]
+}
+
+const initialState: DialogsStateType = {
     newMessageText: 'newMessageText',
     dialogs: [
         {id: v4(), name: 'Anton'},
@@ -17,7 +33,12 @@ const initialState = {
     ],
 }
 
-export const dialogsReducer = (state = initialState, action) => {
+type SendMessageCreatorType = ReturnType<typeof sendMessageCreator>
+type UpdateNewMessageBodyCreatorType = ReturnType<typeof updateNewMessageBodyCreator>
+
+export type DialogsActionType = SendMessageCreatorType | UpdateNewMessageBodyCreatorType
+
+export const dialogsReducer = (state: DialogsStateType = initialState, action: DialogsActionType) => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY": {
             return {...state, newMessageText: action.body}
@@ -37,8 +58,8 @@ export const dialogsReducer = (state = initialState, action) => {
 
 }
 
-export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'})
-export const updateNewMessageBodyCreator = (body) => ({
+export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'} as const)
+export const updateNewMessageBodyCreator = (body: string) => ({
     type: 'UPDATE-NEW-MESSAGE-BODY',
     body: body
-})
+} as const)

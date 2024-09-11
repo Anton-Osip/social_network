@@ -1,16 +1,22 @@
 import styles from './Dialogs.module.css'
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
-import React from "react";
+import React, {ChangeEvent,MouseEvent, FC} from "react";
+import {DialogsStateType} from "../../redux/dialogs-reducer";
 
+export type DialogPropsType = {
+    dialogsPage: DialogsStateType
+    sendMessage: () => void
+    updateNewMessageBody: (body: string) => void
+}
 
-export const Dialogs = ({dialogsPage, sendMessage, updateNewMessageBody}) => {
+export const Dialogs: FC<DialogPropsType> = ({dialogsPage, sendMessage, updateNewMessageBody}) => {
 
-    const addMessageHandler = (e) => {
+    const addMessageHandler = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         sendMessage()
     }
-    const onMessageChangeHandler = (e) => {
+    const onMessageChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         updateNewMessageBody(e.currentTarget.value)
     }
 

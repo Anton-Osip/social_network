@@ -1,17 +1,24 @@
-import React from 'react'
+import React, {ChangeEvent, FC} from 'react'
 import styles from './MyPosts.module.css'
 import {Post} from './Post/Post'
+import {DialogsStateType} from "../../../redux/profile-reducer";
 
+type MyPostsPropsType = {
+    profilePage: DialogsStateType
+    updateNewPost: (text: string) => void
+    addPost: () => void
+}
 
-export const MyPosts = ({profilePage, updateNewPost, addPost}) => {
+export const MyPosts: FC<MyPostsPropsType> = (props) => {
+    const {profilePage, updateNewPost, addPost} = props
 
     const postElements = profilePage.posts.map((post) => <Post key = {post.id} message = {post.message}
-                                                   likeCount = {post.likeCount}/>)
+                                                               likeCount = {post.likeCount}/>)
 
     const onAddPost = () => {
         addPost()
     }
-    const onPostChange = (e) => {
+    const onPostChange = (e: ChangeEvent<HTMLInputElement>) => {
         updateNewPost(e.currentTarget.value)
     }
     return (
