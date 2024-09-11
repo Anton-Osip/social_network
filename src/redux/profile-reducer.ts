@@ -7,7 +7,7 @@ export type PostsType = {
     likeCount: number
 }
 
-export type DialogsStateType = {
+export type ProfileStateType = {
     newPostText: string
     posts: PostsType[]
 }
@@ -17,7 +17,7 @@ type UpdateNewPostTextACType = ReturnType<typeof updateNewPostTextAC>
 
 export type ProfileActionType = AddPostACType | UpdateNewPostTextACType
 
-const initialState: DialogsStateType = {
+const initialState: ProfileStateType = {
     newPostText: 'blablabla',
     posts: [
         {id: v4(), message: 'Hey, why nobody love me?', likeCount: 1},
@@ -26,7 +26,7 @@ const initialState: DialogsStateType = {
     ],
 }
 
-export const profileReducer = (state:DialogsStateType = initialState, action:ProfileActionType) => {
+export const profileReducer = (state:ProfileStateType = initialState, action:ProfileActionType):ProfileStateType => {
     switch (action.type) {
         case "ADD-POST": {
             const newPost = {

@@ -1,13 +1,9 @@
 import React, {ChangeEvent, FC} from 'react'
 import styles from './MyPosts.module.css'
 import {Post} from './Post/Post'
-import {DialogsStateType} from "../../../redux/profile-reducer";
+import {MyPostsPropsType} from "./MyPostsContainer";
 
-type MyPostsPropsType = {
-    profilePage: DialogsStateType
-    updateNewPost: (text: string) => void
-    addPost: () => void
-}
+
 
 export const MyPosts: FC<MyPostsPropsType> = (props) => {
     const {profilePage, updateNewPost, addPost} = props
@@ -44,3 +40,4 @@ export const MyPosts: FC<MyPostsPropsType> = (props) => {
         </div>
     )
 }
+

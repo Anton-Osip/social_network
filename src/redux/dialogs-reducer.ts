@@ -38,7 +38,7 @@ type UpdateNewMessageBodyCreatorType = ReturnType<typeof updateNewMessageBodyCre
 
 export type DialogsActionType = SendMessageCreatorType | UpdateNewMessageBodyCreatorType
 
-export const dialogsReducer = (state: DialogsStateType = initialState, action: DialogsActionType) => {
+export const dialogsReducer = (state: DialogsStateType = initialState, action: DialogsActionType) :DialogsStateType=> {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY": {
             return {...state, newMessageText: action.body}

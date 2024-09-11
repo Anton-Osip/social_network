@@ -6,7 +6,7 @@ export type SidebarActionType = {
 
 const initialState: SidebarStateType = {}
 
-export const sidebarReducer = (state: SidebarStateType = initialState, action: SidebarActionType) => {
+export const sidebarReducer = (state: SidebarStateType = initialState, action: SidebarActionType):SidebarStateType => {
     switch (action.type) {
 
         default:
