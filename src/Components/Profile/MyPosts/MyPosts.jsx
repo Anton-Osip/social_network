@@ -3,9 +3,9 @@ import styles from './MyPosts.module.css'
 import {Post} from './Post/Post'
 
 
-export const MyPosts = ({posts, newPostText, updateNewPost, addPost}) => {
+export const MyPosts = ({profilePage, updateNewPost, addPost}) => {
 
-    const postElements = posts.map((post) => <Post key = {post.id} message = {post.message}
+    const postElements = profilePage.posts.map((post) => <Post key = {post.id} message = {post.message}
                                                    likeCount = {post.likeCount}/>)
 
     const onAddPost = () => {
@@ -20,7 +20,7 @@ export const MyPosts = ({posts, newPostText, updateNewPost, addPost}) => {
                 <h3 className = {styles.newPost__title}>My posts</h3>
                 <div className = {styles.newPost__form}>
                     <input
-                        value = {newPostText}
+                        value = {profilePage.newPostText}
                         onChange = {onPostChange}
                         type = "text"
                         placeholder = "your news..."
