@@ -8,41 +8,44 @@ import axios from "axios";
 
 export const Users: FC<UsersPropsType> = (props) => {
 
-    if (props.usersPage.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then((response) => {
-                props.setUsers(response.data.items)
-            })
-        // props.setUsers([
-        //     {
-        //         id: v1(),
-        //         photoUrl: user,
-        //         followed: true,
-        //         fullName: 'Anton Osipchyk',
-        //         status: 'I am a boss',
-        //         location: {city: 'Minsk', country: 'Belarus'}
-        //     },
-        //     {
-        //         id: v1(),
-        //         photoUrl: user,
-        //         followed: false,
-        //         fullName: 'Sasha',
-        //         status: 'I am a boss',
-        //         location: {city: 'Moscow', country: 'Russia'}
-        //     },
-        //     {
-        //         id: v1(),
-        //         photoUrl: user,
-        //         followed: false,
-        //         fullName: 'Andrew',
-        //         status: 'I am a boss',
-        //         location: {city: 'Kiev', country: 'Ukraine'}
-        //     },])
+    const getUsers = () => {
+        if (props.usersPage.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+                .then((response) => {
+                    props.setUsers(response.data.items)
+                })
+            // props.setUsers([
+            //     {
+            //         id: v1(),
+            //         photoUrl: user,
+            //         followed: true,
+            //         fullName: 'Anton Osipchyk',
+            //         status: 'I am a boss',
+            //         location: {city: 'Minsk', country: 'Belarus'}
+            //     },
+            //     {
+            //         id: v1(),
+            //         photoUrl: user,
+            //         followed: false,
+            //         fullName: 'Sasha',
+            //         status: 'I am a boss',
+            //         location: {city: 'Moscow', country: 'Russia'}
+            //     },
+            //     {
+            //         id: v1(),
+            //         photoUrl: user,
+            //         followed: false,
+            //         fullName: 'Andrew',
+            //         status: 'I am a boss',
+            //         location: {city: 'Kiev', country: 'Ukraine'}
+            //     },])
+        }
     }
 
 
     return <div>
         <h1 className = {styles.users__title}>USERS</h1>
+        <button onClick={getUsers}>GET USERS</button>
         <div>
             {props.usersPage.users.map(u => (
                 <div key = {u.id}>
