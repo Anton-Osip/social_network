@@ -38,6 +38,14 @@ export const Navbar = () => {
                         Music
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink
+                        to = "/users"
+                        className = {styles.item}
+                        activeClassName = {styles.active}>
+                        Find users
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     )
