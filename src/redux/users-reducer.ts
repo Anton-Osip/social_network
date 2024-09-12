@@ -1,9 +1,12 @@
-
 export type UserType = {
-    id: string
-    photoUrl: string
-    fullName: string
-    status: string
+    name: string,
+    id: number,
+    uniqueUrlName: string | null,
+    photos: {
+        small: string | null,
+        large: string | null
+    },
+    status: string | null,
     followed: boolean
     location: {
         city: string
@@ -46,6 +49,6 @@ export const usersReducer = (state: UsersStateType = initialState, action: Users
     }
 }
 
-export const followAC = (userId: string) => ({type: 'FOLLOW', userId} as const)
-export const unfollowAC = (userId: string) => ({type: 'UNFOLLOW', userId} as const)
+export const followAC = (userId: number) => ({type: 'FOLLOW', userId} as const)
+export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId} as const)
 export const setUsersAC = (users: UserType[]) => ({type: 'SET-USERS', users} as const)

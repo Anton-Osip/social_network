@@ -1,38 +1,43 @@
 import React, {FC} from "react";
 import styles from "../Users/Users.module.css";
 import {UsersPropsType} from "./UsersContainer";
-import {v1} from "uuid";
-import user from "../../assets/user.jpeg";
+import userImg from '../../assets/user.jpeg'
+
+import axios from "axios";
 
 
 export const Users: FC<UsersPropsType> = (props) => {
 
     if (props.usersPage.users.length === 0) {
-        props.setUsers([
-            {
-                id: v1(),
-                photoUrl: user,
-                followed: true,
-                fullName: 'Anton Osipchyk',
-                status: 'I am a boss',
-                location: {city: 'Minsk', country: 'Belarus'}
-            },
-            {
-                id: v1(),
-                photoUrl: user,
-                followed: false,
-                fullName: 'Sasha',
-                status: 'I am a boss',
-                location: {city: 'Moscow', country: 'Russia'}
-            },
-            {
-                id: v1(),
-                photoUrl: user,
-                followed: false,
-                fullName: 'Andrew',
-                status: 'I am a boss',
-                location: {city: 'Kiev', country: 'Ukraine'}
-            },])
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then((response) => {
+                props.setUsers(response.data.items)
+            })
+        // props.setUsers([
+        //     {
+        //         id: v1(),
+        //         photoUrl: user,
+        //         followed: true,
+        //         fullName: 'Anton Osipchyk',
+        //         status: 'I am a boss',
+        //         location: {city: 'Minsk', country: 'Belarus'}
+        //     },
+        //     {
+        //         id: v1(),
+        //         photoUrl: user,
+        //         followed: false,
+        //         fullName: 'Sasha',
+        //         status: 'I am a boss',
+        //         location: {city: 'Moscow', country: 'Russia'}
+        //     },
+        //     {
+        //         id: v1(),
+        //         photoUrl: user,
+        //         followed: false,
+        //         fullName: 'Andrew',
+        //         status: 'I am a boss',
+        //         location: {city: 'Kiev', country: 'Ukraine'}
+        //     },])
     }
 
 
@@ -43,7 +48,7 @@ export const Users: FC<UsersPropsType> = (props) => {
                 <div key = {u.id}>
                     <span>
                         <div>
-                            <img src = {u.photoUrl} alt = "user"/>
+                            <img src = {u.photos.large || userImg} alt = "user"/>
                         </div>
                         <div>
                             {u.followed ?
@@ -57,12 +62,12 @@ export const Users: FC<UsersPropsType> = (props) => {
                     </span>
                     <span>
                         <span>
-                            <div>{u.fullName}</div>
+                            <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
                         <span>
-                            <div>{u.location.city}</div>
-                            <div>{u.location.country}</div>
+                            <div>{'Minsk'}</div>
+                            <div>{'Belarus'}</div>
                         </span>
                     </span>
                 </div>
