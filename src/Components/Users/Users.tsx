@@ -1,54 +1,27 @@
-import React, {FC} from "react";
+import React from "react";
 import styles from "../Users/Users.module.css";
 import {UsersPropsType} from "./UsersContainer";
 import userImg from '../../assets/user.jpeg'
 
 import axios from "axios";
 
-
-export const Users: FC<UsersPropsType> = (props) => {
-
-    const getUsers = () => {
-        if (props.usersPage.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then((response) => {
-                    props.setUsers(response.data.items)
-                })
-            // props.setUsers([
-            //     {
-            //         id: v1(),
-            //         photoUrl: user,
-            //         followed: true,
-            //         fullName: 'Anton Osipchyk',
-            //         status: 'I am a boss',
-            //         location: {city: 'Minsk', country: 'Belarus'}
-            //     },
-            //     {
-            //         id: v1(),
-            //         photoUrl: user,
-            //         followed: false,
-            //         fullName: 'Sasha',
-            //         status: 'I am a boss',
-            //         location: {city: 'Moscow', country: 'Russia'}
-            //     },
-            //     {
-            //         id: v1(),
-            //         photoUrl: user,
-            //         followed: false,
-            //         fullName: 'Andrew',
-            //         status: 'I am a boss',
-            //         location: {city: 'Kiev', country: 'Ukraine'}
-            //     },])
-        }
+export class Users extends React.Component<UsersPropsType> {
+    constructor(props:UsersPropsType) {
+        super(props);
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then((response) => {
+                this.props.setUsers(response.data.items)
+            })
     }
 
 
-    return <div>
-        <h1 className = {styles.users__title}>USERS</h1>
-        <button onClick={getUsers}>GET USERS</button>
-        <div>
-            {props.usersPage.users.map(u => (
-                <div key = {u.id}>
+
+    render() {
+        return <div>
+            <h1 className = {styles.users__title}>USERS</h1>
+            <div>
+                {this.props.usersPage.users.map(u => (
+                    <div key = {u.id}>
                     <span>
                         <div>
                             <img src = {u.photos.large || userImg} alt = "user"/>
@@ -56,14 +29,14 @@ export const Users: FC<UsersPropsType> = (props) => {
                         <div>
                             {u.followed ?
                                 <button onClick = {() => {
-                                    props.unfollow(u.id)
+                                    this.props.unfollow(u.id)
                                 }}>Unfollow</button> :
                                 <button onClick = {() => {
-                                    props.follow(u.id)
+                                    this.props.follow(u.id)
                                 }}>Follow</button>}
                         </div>
                     </span>
-                    <span>
+                        <span>
                         <span>
                             <div>{u.name}</div>
                             <div>{u.status}</div>
@@ -73,8 +46,9 @@ export const Users: FC<UsersPropsType> = (props) => {
                             <div>{'Belarus'}</div>
                         </span>
                     </span>
-                </div>
-            ))}
+                    </div>
+                ))}
+            </div>
         </div>
-    </div>
+    }
 }
