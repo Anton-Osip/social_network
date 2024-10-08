@@ -30,12 +30,12 @@ const initialState: UsersStateType = {
     isFetching: false
 }
 
-type FollowACType = ReturnType<typeof followAC>
-type UnfollowACType = ReturnType<typeof unfollowAC>
-type SetUsersACType = ReturnType<typeof setUsersAC>
-type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
-type SetTotalUsersCountACType = ReturnType<typeof setTotalUsersCountAC>
-type ToggleIsFetchingACType = ReturnType<typeof toggleIsFetchingAC>
+type FollowACType = ReturnType<typeof follow>
+type UnfollowACType = ReturnType<typeof unfollow>
+type SetUsersACType = ReturnType<typeof setUsers>
+type SetCurrentPageACType = ReturnType<typeof setCurrentPage>
+type SetTotalUsersCountACType = ReturnType<typeof setTotalUsersCount>
+type ToggleIsFetchingACType = ReturnType<typeof toggleIsFetching>
 
 export type UsersActionType =
     FollowACType
@@ -70,14 +70,14 @@ export const usersReducer = (state: UsersStateType = initialState, action: Users
     }
 }
 
-export const followAC = (userId: number) => ({type: 'FOLLOW', userId} as const)
-export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId} as const)
-export const setUsersAC = (users: UserType[]) => ({type: 'SET-USERS', users} as const)
-export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const)
-export const setTotalUsersCountAC = (totalUsersCount: number) => ({
+export const follow = (userId: number) => ({type: 'FOLLOW', userId} as const)
+export const unfollow = (userId: number) => ({type: 'UNFOLLOW', userId} as const)
+export const setUsers = (users: UserType[]) => ({type: 'SET-USERS', users} as const)
+export const setCurrentPage = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const)
+export const setTotalUsersCount = (totalUsersCount: number) => ({
     type: 'SET-TOTAL-USERS-COUNT',
     totalUsersCount
 } as const)
-export const toggleIsFetchingAC = (isFetching: boolean) => ({
+export const toggleIsFetching = (isFetching: boolean) => ({
     type: 'TOGGLE-IS-FETCHING', isFetching
 } as const)
